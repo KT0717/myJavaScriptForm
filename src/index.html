@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>myDevelopTemplate</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script type="text/javascript" src="/js/lib/jquery-3.5.1.min.js"></script>
+  <script type="text/javascript" src="/js/lib/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="/js/lib/fontawesome.all.min.js"></script>
+  <script type="text/javascript" src="/js/lib/libphonenumber-js.min.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.custom.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="form-wrapper col mx-auto">
+        <div class="border rounded p-0 p-sm-4 my-5 border-cutstom-hidden">
+          <h4 class="text-center font-weight-bold mb-4">お申し込みフォーム</h4>
+          <form id="form" name='form'>
+            <div class="px-1 mb-4">
+              <label class="form-label d-flex align-items-center" for="username">
+                <span>お名前</span>
+                <span class="small">（ニックネーム可、4 文字以上）</span>
+                <span class="small text-danger">（必須）</span>
+              </label>
+              <input class="form-control" type="text" id="your-name" name="username">
+              <small class="err-msg text-danger mt-1 ml-1 d-none"></small>
+            </div>
+            <div class="px-1 mb-4">
+              <label class="form-label d-flex align-items-center" for="email">
+                <span>メールアドレス</span>
+                <span class="small text-danger">（必須）</span>
+              </label>
+              <input class="form-control" type="text" id="your-email" name="email">
+              <small class="err-msg text-danger mt-1 ml-1 d-none"></small>
+            </div>
+            <div class="px-1 mb-4">
+              <label class="form-label d-flex align-items-center">
+                <span>性別</span>
+                <span class="small text-danger">（必須）</span>
+              </label>
+              <div class="d-flex" id="your-gender">
+                <div class="custom-control custom-radio mr-2">
+                  <input class="custom-control-input" type="radio" id="msex" name="your-gender" value="男">
+                  <label class="custom-control-label" for="msex">
+                    <span>男</span>
+                  </label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" id="fsex" name="your-gender" value="女">
+                  <label class="custom-control-label" for="fsex">
+                    <span>女</span>
+                  </label>
+                </div>
+              </div>
+              <small class="err-msg text-danger mt-1 ml-1 d-none"></small>
+            </div>
+            <div class="px-1 mb-4">
+              <label for="your-members" class="form-label d-flex align-items-center">
+                <span>参加人数</span>
+                <span class="small">（10 人まで）</span>
+                <span class="small text-danger">（必須）</span>
+              </label>
+              <input name="your-members" class="form-control w-25" id="your-members">
+              <small class="err-msg text-danger mt-1 ml-1 d-none"></small>
+            </div>
+            <div class="px-1 mb-4">
+              <label class="form-label d-flex align-items-center" for="your-tel">
+                <span>電話番号</span>
+                <span class="small text-danger">（必須）</span>
+              </label>
+              <input class="form-control" type="tel" id="your-tel" name="your-tel">
+              <small class="err-msg text-danger mt-1 ml-1 d-none"></small>
+            </div>
+            <div class="px-1 mb-4">
+              <label for="your-level" class="form-label d-flex align-items-center">
+                <span>過去の実績や経験年数</span>
+                <span class="small text-secondary">（任意）</span>
+              </label>
+              <textarea name="your-level" class="form-control" id="your-level"></textarea>
+              <small class="example-text form-text text-muted">例）国体３位、経験年数２０年以上</small>
+            </div>
+            <hr>
+            <div class="px-1 mb-4">
+              <button name="your-submit" class="btn btn-primary w-100" type="submit">確認画面へ</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/dist/main.min.js"></script>
+</body>
+
+</html>
