@@ -106,22 +106,47 @@ function validSex(mSex, fSex) {
 }
 
 // 参加人数確認
+// 最小申し込み人数
+var memberNumMin = 1;
+// 最大申し込み人数
+var memberNumMax = 10;
+
+// const suppressZero1 = str => {
+//   if (str.match(/^0+/)) {
+//     console.log(true);
+//   } else {
+//     console.log(false);
+//   }
+// };
+
 function validateMember(val) {
+  var replaceVal = val.value;
+  console.log(replaceVal);
+  replaceVal = replaceVal.replace(/[０-９]/g,
+    function( tmpStr ) {
+      return String.fromCharCode( tmpStr.charCodeAt(0) - 0xFEE0 );
+    }
+  );
+  console.log(replaceVal);
+  if (replaceVal.match(/^0+/)) {
+    console.log(true);
+    replaceVal.replace(/^0+/, '');
+    console.log(replaceVal);
+  }
+  console.log(replaceVal);
+  if (replaceVal == memberNumMin - 1 || replaceVal > memberNumMax) {
+    val.nextElementSibling.innerHTML = `参加申し込みは ${memberNumMin} 人から ${memberNumMax} 人までです`;
+    val.nextElementSibling.classList.remove('d-none');
+    val.value = replaceVal;
+    return false;
+  }
   var memberFormat = /^[-]?([1-9]\d*|0)(\.\d+)?$/;
-  if (val.value == 0) {
-    val.nextElementSibling.innerHTML = '参加申し込みは 1 人から10人までです';
-    val.nextElementSibling.classList.remove('d-none');
-    return false;
-  }
-  if (val.value > 10) {
-    val.nextElementSibling.innerHTML = '参加申し込みは 1 人から10人までです';
-    val.nextElementSibling.classList.remove('d-none');
-    return false;
-  }
-  if (val.value.match(memberFormat)) {
+  if (replaceVal.match(memberFormat)) {
+    val.value = replaceVal;
     errMsg(val, true);
     return true;
   } else {
+    val.value = replaceVal;
     errMsg(val, false);
     return false;
   }
