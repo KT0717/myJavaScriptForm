@@ -1,5 +1,6 @@
 var form = document.getElementById('form');
 var yourName = document.getElementById('your-name');
+var yourPass = document.getElementById('your-pass');
 var yourEmail = document.getElementById('your-email');
 var yourGender = document.getElementById('your-gender');
 var yourMembers = document.getElementById('your-members');
@@ -10,6 +11,9 @@ var fSex = document.getElementById('fsex');
 form.addEventListener('submit', e => {
   e.preventDefault();
   if (validateName(yourName)) {
+    //
+  }
+  if (validationPass(yourPass)) {
     //
   }
   if (validateEmail(yourEmail)) {
@@ -24,7 +28,7 @@ form.addEventListener('submit', e => {
   if (validTel(yourTel)) {
     //
   }
-  if (emptyCheck(yourName, yourEmail, yourTel, yourMembers)) {
+  if (emptyCheck(yourName, yourPass, yourEmail, yourTel, yourMembers)) {
     //
   }
   return false;
@@ -36,6 +40,10 @@ function emptyCheck(...args) {
     if (args[i].value === '') {
       args[i].nextElementSibling.innerHTML = '必須項目です';
       args[i].nextElementSibling.classList.remove('d-none');
+      if (args[i].nextElementSibling.nextElementSibling !== null) {
+        args[i].nextElementSibling.nextElementSibling.classList.add('d-none');
+        args[i].addEventListener('input', inputChange);
+      }
     }
   }
   return true;
@@ -43,7 +51,24 @@ function emptyCheck(...args) {
 
 // 名前確認
 function validateName(val) {
-  if (val.value.length >= 4) {
+  if (val.value.length >= 1) {
+    errMsg(val, true);
+    return true;
+  } else {
+    errMsg(val, false);
+    return false;
+  }
+}
+
+function inputChange(){
+  this.nextElementSibling.classList.add('d-none');
+  this.nextElementSibling.nextElementSibling.classList.remove('d-none');
+}
+
+// パスワード
+function validationPass(val) {
+  var passformat = /^(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{8,}$/;
+  if (val.value.match(passformat)) {
     errMsg(val, true);
     return true;
   } else {
@@ -145,23 +170,35 @@ function validateMember(val) {
 
 // エラーメッセージ
 function errMsg(params, flag) {
+  function removeDnone(params) {
+    params.nextElementSibling.classList.remove('d-none');
+    if (params.nextElementSibling.nextElementSibling !== null) {
+      params.nextElementSibling.nextElementSibling.classList.add('d-none');
+    }
+  }
   if (flag == true) {
     params.nextElementSibling.innerHTML = '<span class="text-success">OK<i class="fas fa-check ml-1"></i></span>';
-    params.nextElementSibling.classList.remove('d-none');
+    removeDnone(params);
   } else if (flag == false && params == yourName) {
-    params.nextElementSibling.innerHTML = '4 文字以上で設定してください';
-    params.nextElementSibling.classList.remove('d-none');
+    params.nextElementSibling.innerHTML = 'お名前は 1 文字以上で入力してください';
+    removeDnone(params);
+  } else if (flag == false && params == yourPass) {
+    params.nextElementSibling.innerHTML = 'パスワードは半角英数字 8 文字以上で入力してください';
+    if (params.nextElementSibling.nextElementSibling !== null) {
+      params.nextElementSibling.nextElementSibling.classList.add('d-none');
+    }
+    removeDnone(params);
   } else if (flag == false && params == yourEmail) {
     params.nextElementSibling.innerHTML = 'メールの形式が正しくありません';
-    params.nextElementSibling.classList.remove('d-none');
+    removeDnone(params);
   } else if (flag == false && params == yourGender) {
     params.nextElementSibling.innerHTML = 'どちらかを選択してください';
-    params.nextElementSibling.classList.remove('d-none');
+    removeDnone(params);
   } else if (flag == false && params == yourTel) {
     params.nextElementSibling.innerHTML = '電話番号の形式が正しくありません';
-    params.nextElementSibling.classList.remove('d-none');
+    removeDnone(params);
   } else if (flag == false && params == yourMembers) {
     params.nextElementSibling.innerHTML = '数字で入力してください';
-    params.nextElementSibling.classList.remove('d-none');
+    removeDnone(params);
   }
 }
