@@ -22,9 +22,6 @@ form.addEventListener('submit', e => {
   if (validSex(mSex, fSex)) {
     //
   }
-  if (validateMember(yourMembers)) {
-    //
-  }
   if (validTel(yourTel)) {
     //
   }
@@ -49,6 +46,12 @@ function emptyCheck(...args) {
   return true;
 }
 
+// 入力検知メッセージ処理
+function inputChange(){
+  this.nextElementSibling.classList.add('d-none');
+  this.nextElementSibling.nextElementSibling.classList.remove('d-none');
+}
+
 // 名前確認
 function validateName(val) {
   if (val.value.length >= 1) {
@@ -58,11 +61,6 @@ function validateName(val) {
     errMsg(val, false);
     return false;
   }
-}
-
-function inputChange(){
-  this.nextElementSibling.classList.add('d-none');
-  this.nextElementSibling.nextElementSibling.classList.remove('d-none');
 }
 
 // パスワード
@@ -126,44 +124,6 @@ function validSex(mSex, fSex) {
   } else {
     errMsg(yourGender, false);
     yourGender.nextElementSibling.classList.remove('d-none');
-    return false;
-  }
-}
-
-// 参加人数確認
-function validateMember(val) {
-  // 最小申し込み人数
-  var memberNumMin = 1;
-  // 最大申し込み人数
-  var memberNumMax = 10;
-  // input value 取得
-  var replaceVal = val.value;
-  // もし大文字で入力されたら小文字に変換
-  replaceVal = replaceVal.replace(/[０-９]/g,
-    function( tmpStr ) {
-      return String.fromCharCode( tmpStr.charCodeAt(0) - 0xFEE0 );
-    }
-  );
-  // もし 01 など、ゼロ付きで入力された場合、ゼロを削除
-  if (replaceVal.match(/0[1-9]/)) {
-    replaceVal = replaceVal.replace(/^0+/, '');
-  }
-  // 参加人数の確認
-  if (replaceVal == memberNumMin - 1 || replaceVal > memberNumMax) {
-    val.nextElementSibling.innerHTML = `参加申し込みは ${memberNumMin} 人から ${memberNumMax} 人までです`;
-    val.nextElementSibling.classList.remove('d-none');
-    val.value = replaceVal;
-    return false;
-  }
-  // 数字以外入力されていないか確認
-  var memberFormat = /^[-]?([1-9]\d*|0)(\.\d+)?$/;
-  if (replaceVal.match(memberFormat)) {
-    val.value = replaceVal;
-    errMsg(val, true);
-    return true;
-  } else {
-    val.value = replaceVal;
-    errMsg(val, false);
     return false;
   }
 }

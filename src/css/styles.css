@@ -58,6 +58,14 @@ a:hover {
   border-color: #ced4da !important;
 }
 
+.middle {
+  font-size: 91%;
+  font-weight: 400;
+}
+
+.text-form-name {
+    color: #3e3e3e !important;
+}
 /* my Bootstrap reset end */
 
 textarea:-webkit-autofill,
@@ -96,7 +104,7 @@ label {
 }
 
 .form-wrapper {
-  max-width: 445px;
+  max-width: 400px;
 }
 
 @media(max-width:767px) {
