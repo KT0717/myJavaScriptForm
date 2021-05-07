@@ -64,7 +64,7 @@ function validateEmail(val) {
   }
 }
 
-// 電話番号確認
+// 電話番号確認（libphonenumber 使用）
 var validateTelNeo = function (value) {
   return /^[0０]/.test(value) && libphonenumber.isValidNumber(value, 'JP');
 };
@@ -106,40 +106,31 @@ function validSex(mSex, fSex) {
 }
 
 // 参加人数確認
-// 最小申し込み人数
-var memberNumMin = 1;
-// 最大申し込み人数
-var memberNumMax = 10;
-
-// const suppressZero1 = str => {
-//   if (str.match(/^0+/)) {
-//     console.log(true);
-//   } else {
-//     console.log(false);
-//   }
-// };
-
 function validateMember(val) {
+  // 最小申し込み人数
+  var memberNumMin = 1;
+  // 最大申し込み人数
+  var memberNumMax = 10;
+  // input value 取得
   var replaceVal = val.value;
-  console.log(replaceVal);
+  // もし大文字で入力されたら小文字に変換
   replaceVal = replaceVal.replace(/[０-９]/g,
     function( tmpStr ) {
       return String.fromCharCode( tmpStr.charCodeAt(0) - 0xFEE0 );
     }
   );
-  console.log(replaceVal);
-  if (replaceVal.match(/^0+/)) {
-    console.log(true);
-    replaceVal.replace(/^0+/, '');
-    console.log(replaceVal);
+  // もし 01 など、ゼロ付きで入力された場合、ゼロを削除
+  if (replaceVal.match(/0[1-9]/)) {
+    replaceVal = replaceVal.replace(/^0+/, '');
   }
-  console.log(replaceVal);
+  // 参加人数の確認
   if (replaceVal == memberNumMin - 1 || replaceVal > memberNumMax) {
     val.nextElementSibling.innerHTML = `参加申し込みは ${memberNumMin} 人から ${memberNumMax} 人までです`;
     val.nextElementSibling.classList.remove('d-none');
     val.value = replaceVal;
     return false;
   }
+  // 数字以外入力されていないか確認
   var memberFormat = /^[-]?([1-9]\d*|0)(\.\d+)?$/;
   if (replaceVal.match(memberFormat)) {
     val.value = replaceVal;
