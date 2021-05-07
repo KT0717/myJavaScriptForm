@@ -20,23 +20,31 @@
     <div class="row">
       <div class="form-wrapper col mx-auto">
         <div class="border rounded p-0 p-sm-4 my-5 border-cutstom-hidden">
-          <h4 class="text-center font-weight-bold mb-4">お申し込みフォーム</h4>
+          <h4 class="text-center font-weight-bold mb-4">ユーザー登録</h4>
           <form id="form" name='form'>
             <div class="px-1 mb-4">
-              <label class="form-label d-flex align-items-center" for="username">
+              <label class="form-label d-flex align-items-center" for="your-name">
                 <span>お名前</span>
-                <span class="small">（ニックネーム可、4 文字以上）</span>
                 <span class="small text-danger">（必須）</span>
               </label>
-              <input class="form-control" type="text" id="your-name" name="username">
+              <input class="form-control" type="text" id="your-name" name="your-name">
               <small class="err-msg text-danger mt-1 ml-1 d-none"></small>
             </div>
             <div class="px-1 mb-4">
-              <label class="form-label d-flex align-items-center" for="email">
+              <label class="form-label d-flex align-items-center" for="your-pass">
+                <span>パスワード</span>
+                <span class="small text-danger">（必須）</span>
+              </label>
+              <input class="form-control" type="text" id="your-pass" name="your-pass">
+              <small class="err-msg text-danger mt-1 ml-1 d-none"></small>
+              <small class="guide-msg form-text text-muted">半角英数字8文字以上</small>
+            </div>
+            <div class="px-1 mb-4">
+              <label class="form-label d-flex align-items-center" for="your-email">
                 <span>メールアドレス</span>
                 <span class="small text-danger">（必須）</span>
               </label>
-              <input class="form-control" type="text" id="your-email" name="email">
+              <input class="form-control" type="text" id="your-email" name="your-email">
               <small class="err-msg text-danger mt-1 ml-1 d-none"></small>
             </div>
             <div class="px-1 mb-4">
