@@ -59,8 +59,13 @@ a:hover {
 }
 
 .middle {
-  font-size: 91%;
-  font-weight: 400;
+  font-size: 90%;
+}
+
+.form-control {
+  font-size: 90% !important;
+  height: 36px !important;
+  color: #202124 !important;
 }
 
 .text-form-name {
@@ -77,6 +82,10 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-internal-autofill-selected {
+  color: #202124 !important;
 }
 
 .was-validated :invalid~.example-text {
