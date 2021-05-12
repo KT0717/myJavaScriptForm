@@ -10,64 +10,50 @@ var yourMonth = document.getElementById('your-month');
 var yourDay = document.getElementById('your-day');
 // 性別セクション
 var yourGender = document.getElementById('your-gender');
+var mSex = document.getElementById('msex');
+var fSex = document.getElementById('fsex');
 // 住所セクション
 var yourAddress = document.getElementById('your-address');
 var yourAddressZip = document.getElementById('zipcode-input');
 var yourAddressThird = document.getElementById('address3');
+// 電話番号セクション
+var yourTel = document.getElementById('your-tel');
+var yourTelNum = document.getElementById('your-tel-num');
+// メールセクション
+var yourEmail = document.getElementById('your-email');
+var yourEmailInput = document.getElementById('your-email-input');
 // パスワードセクション
 var yourPass = document.getElementById('your-pass');
-var yourEmail = document.getElementById('your-email');
-var yourMembers = document.getElementById('your-members');
-var yourTel = document.getElementById('your-tel');
-var mSex = document.getElementById('msex');
-var fSex = document.getElementById('fsex');
+var yourPassInput1 = document.getElementById('your-pass-input1');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  if (validateName(yourFirstName, yourLastName)) {
+  if (validateName()) {
     //
   }
-  if (validationBirthday(yourYear, yourMonth, yourDay)) {
+  if (validationBirthday()) {
     //
   }
-  // if (validationPass(yourPass)) {
-  //   //
-  // }
-  // if (validateEmail(yourEmail)) {
-  //   //
-  // }
-  if (validSex(mSex, fSex)) {
+  if (validSex()) {
     //
   }
-  if (validationAddress(yourAddressZip, yourAddressThird)) {
+  if (validationAddress()) {
     //
   }
-  // if (validTel(yourTel)) {
-  //   //
-  // }
-  // if (emptyCheck(yourName, yourPass, yourEmail, yourTel, yourMembers)) {
-  //   //
-  // }
+  if (validTel()) {
+    //
+  }
+  if (validateEmail()) {
+    //
+  }
+  if (validationPass()) {
+    //
+  }
   return false;
 });
 
-// 未入力確認
-function emptyCheck(...args) {
-  for (let i = 0; i < args.length; i = (i + 1) | 0) {
-    if (args[i].value === '') {
-      args[i].nextElementSibling.innerHTML = '必須項目です';
-      args[i].nextElementSibling.classList.remove('d-none');
-      if (args[i].nextElementSibling.nextElementSibling !== null) {
-        args[i].nextElementSibling.nextElementSibling.classList.add('d-none');
-        args[i].addEventListener('input', inputChange);
-      }
-    }
-  }
-  return true;
-}
-
 // 名前確認
-function validateName(yourFirstName, yourLastName) {
+function validateName() {
   var yourNameErrMsg = yourName.getElementsByClassName('err-msg')[0];
   function inputChange() {
     yourNameErrMsg.classList.add('d-none');
@@ -105,7 +91,7 @@ function validateName(yourFirstName, yourLastName) {
 }
 
 // 生年月日
-function validationBirthday(yourYear, yourMonth, yourDay) {
+function validationBirthday() {
   var yourBirthdayErrMsg = yourBirthday.getElementsByClassName('err-msg')[0];
   function inputChange() {
     yourBirthdayErrMsg.classList.add('d-none');
@@ -148,7 +134,7 @@ function validationBirthday(yourYear, yourMonth, yourDay) {
 }
 
 // 性別確認
-function validSex(mSex, fSex) {
+function validSex() {
   var yourGenderErrMsg = yourGender.getElementsByClassName('err-msg')[0];
   function inputChange() {
     yourGenderErrMsg.classList.add('d-none');
@@ -179,12 +165,11 @@ function validSex(mSex, fSex) {
 }
 
 // 住所
-function validationAddress(yourAddressZip, yourAddressThird) {
+function validationAddress() {
   var yourAddressErrMsg = yourAddress.getElementsByClassName('err-msg')[0];
   function inputChange() {
     yourAddressErrMsg.classList.add('d-none');
   }
-
   // 郵便番号が未入力だったら
   if (yourAddressZip.value === '') {
     yourAddressErrMsg.classList.remove('d-none');
@@ -211,32 +196,8 @@ function validationAddress(yourAddressZip, yourAddressThird) {
   return false;
 }
 
-// パスワード
-function validationPass(val) {
-  var passformat = /^(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{8,}$/;
-  if (val.value.match(passformat)) {
-    errMsg(val, true);
-    return true;
-  } else {
-    errMsg(val, false);
-    return false;
-  }
-}
-
-// メール確認
-function validateEmail(val) {
-  var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  if (val.value.match(mailformat)) {
-    errMsg(val, true);
-    return true;
-  } else {
-    errMsg(val, false);
-    return false;
-  }
-}
-
 // 電話番号確認（libphonenumber 使用）
-var validateTelNeo = function (value) {
+var validateTelLibphonenumber = function (value) {
   return /^[0０]/.test(value) && libphonenumber.isValidNumber(value, 'JP');
 };
 
@@ -244,52 +205,84 @@ var formatTel = function (value) {
   return new libphonenumber.AsYouType('JP').input(value);
 };
 
-function validTel(tel) {
-  var ttt = tel.value;
-  if (validateTelNeo(ttt)) {
-    var formattedTel = formatTel(ttt);
-    errMsg(tel, true);
-    tel.value = formattedTel;
+function validTel() {
+  var yourTelErrMsg = yourTel.getElementsByClassName('err-msg')[0];
+  function inputChange() {
+    yourTelErrMsg.classList.add('d-none');
+  }
+  if (yourTelNum.value === '') {
+    yourTelErrMsg.classList.remove('d-none');
+    yourTelErrMsg.innerHTML = '<span class="text-danger"><i class="fas fa-exclamation-circle mr-1"></i>電話番号を入力してください</span>';
+    if (yourTelNum.value !== null) {
+      yourTelNum.addEventListener('input', inputChange);
+    }
     return true;
-  } else {
-    errMsg(tel, false);
-    return false;
+  }
+  else if (validateTelLibphonenumber(yourTelNum.value)) {
+    var formattedTel = formatTel(yourTelNum.value);
+    yourTelNum.value = formattedTel;
+    yourTelErrMsg.classList.remove('d-none');
+    yourTelErrMsg.innerHTML = '<span class="text-success"><i class="fas fa-check mr-1"></i>OK</span>';
+    return true;
+  }
+  else {
+    yourTelErrMsg.classList.remove('d-none');
+    yourTelErrMsg.innerHTML = '電話番号の形式が正しくありません';
+    return true;
   }
 }
 
-
-
-// エラーメッセージ
-function errMsg(params, flag) {
-  function removeDnone(params) {
-    params.nextElementSibling.classList.remove('d-none');
-    if (params.nextElementSibling.nextElementSibling !== null) {
-      params.nextElementSibling.nextElementSibling.classList.add('d-none');
-    }
+// メール確認
+function validateEmail() {
+  var yourEmailErrMsg = yourEmail.getElementsByClassName('err-msg')[0];
+  function inputChange() {
+    yourEmailErrMsg.classList.add('d-none');
   }
-  if (flag == true) {
-    params.nextElementSibling.innerHTML = '<span class="text-success">OK<i class="fas fa-check ml-1"></i></span>';
-    removeDnone(params);
-  } else if (flag == false && params == yourName) {
-    params.nextElementSibling.innerHTML = 'お名前は 1 文字以上で入力してください';
-    removeDnone(params);
-  } else if (flag == false && params == yourPass) {
-    params.nextElementSibling.innerHTML = 'パスワードは半角英数字 8 文字以上で入力してください';
-    if (params.nextElementSibling.nextElementSibling !== null) {
-      params.nextElementSibling.nextElementSibling.classList.add('d-none');
+  if (yourEmailInput.value === '') {
+    yourEmailErrMsg.classList.remove('d-none');
+    yourEmailErrMsg.innerHTML = '<span class="text-danger"><i class="fas fa-exclamation-circle mr-1"></i>メールアドレスを入力してください</span>';
+    if (yourEmailInput.value !== null) {
+      yourEmailInput.addEventListener('input', inputChange);
     }
-    removeDnone(params);
-  } else if (flag == false && params == yourEmail) {
-    params.nextElementSibling.innerHTML = 'メールの形式が正しくありません';
-    removeDnone(params);
-  } else if (flag == false && params == yourGender) {
-    params.nextElementSibling.innerHTML = 'どちらかを選択してください';
-    removeDnone(params);
-  } else if (flag == false && params == yourTel) {
-    params.nextElementSibling.innerHTML = '電話番号の形式が正しくありません';
-    removeDnone(params);
-  } else if (flag == false && params == yourMembers) {
-    params.nextElementSibling.innerHTML = '数字で入力してください';
-    removeDnone(params);
+    return true;
+  }
+  var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if (yourEmailInput.value.match(mailformat)) {
+    yourEmailErrMsg.classList.remove('d-none');
+    yourEmailErrMsg.innerHTML = '<span class="text-success"><i class="fas fa-check mr-1"></i>OK</span>';
+    return true;
+  } else {
+    yourEmailErrMsg.classList.remove('d-none');
+    yourEmailErrMsg.innerHTML = 'メールの形式が正しくありません';
+    return true;
+  }
+}
+
+// パスワード
+function validationPass() {
+  var yourPassErrMsg = yourPass.getElementsByClassName('err-msg')[0];
+  function inputChange() {
+    yourPassErrMsg.classList.add('d-none');
+    yourPassErrMsg.previousElementSibling.classList.remove('d-none');
+  }
+  if (yourPassInput1.value === '') {
+    yourPassErrMsg.classList.remove('d-none');
+    yourPassErrMsg.innerHTML = '<span class="text-danger"><i class="fas fa-exclamation-circle mr-1"></i>パスワードを入力してください</span>';
+    yourPassErrMsg.previousElementSibling.classList.add('d-none');
+    if (yourPassInput1.value !== null) {
+      yourPassInput1.addEventListener('input', inputChange);
+    }
+    return true;
+  }
+  var passformat = /^(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{8,}$/;
+  if (yourPassInput1.value.match(passformat)) {
+    yourPassErrMsg.classList.remove('d-none');
+    yourPassErrMsg.innerHTML = '<span class="text-success"><i class="fas fa-check mr-1"></i>OK</span>';
+    return true;
+  } else {
+    yourPassErrMsg.classList.remove('d-none');
+    yourPassErrMsg.innerHTML = '<span class="text-danger"><i class="fas fa-exclamation-circle mr-1"></i>パスワードの形式が正しくありません';
+    yourPassErrMsg.previousElementSibling.classList.add('d-none');
+    return true;
   }
 }

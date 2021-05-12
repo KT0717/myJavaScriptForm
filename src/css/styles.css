@@ -59,10 +59,12 @@ a:hover {
 }
 
 .middle {
-  font-size: 90%;
+  font-size: 84%;
+  margin-left: .125rem;
 }
 
-.form-control {
+.form-control,
+.custom-select {
   font-size: 90% !important;
   height: 36px !important;
   color: #202124 !important;
@@ -113,7 +115,7 @@ label {
 }
 
 .form-wrapper {
-  max-width: 400px;
+  max-width: 425px;
 }
 
 @media(max-width:767px) {

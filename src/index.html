@@ -22,24 +22,24 @@
         <div class="border rounded p-0 p-sm-4 my-5 border-cutstom-hidden">
           <h4 class="text-center font-weight-bold mb-4">ユーザー登録</h4>
           <form id="form" class="h-adr" name='form'>
-            <div id="your-name" class="px-1 mb-4">
+            <div id="your-name" class="px-1 mb-3">
               <div class="d-flex">
                 <div class="mr-2">
                   <label class="form-label d-flex align-items-center" for="your-first-name">
-                    <span class="middle font-weight-bold text-form-name">お名前(姓)</span>
+                    <span class="middle font-weight-bold text-form-name">お名前（姓）</span>
                   </label>
                   <input class="form-control" type="text" id="your-first-name" name="your-first-name" placeholder="姓">
                 </div>
                 <div class="">
                   <label class="form-label d-flex align-items-center" for="your-last-name">
-                    <span class="middle font-weight-bold text-form-name">お名前(名)</span>
+                    <span class="middle font-weight-bold text-form-name">お名前（名）</span>
                   </label>
                   <input class="form-control" type="text" id="your-last-name" name="your-last-name" placeholder="名">
                 </div>
               </div>
               <div class="err-msg small text-danger mt-1 ml-1 d-none"></div>
             </div>
-            <div id="your-birthday" class="px-1 mb-4">
+            <div id="your-birthday" class="px-1 mb-3">
               <label class="form-label d-flex align-items-center" for="1900">
                 <span class="middle font-weight-bold text-form-name">生年月日</span>
               </label>
@@ -199,7 +199,7 @@
               </div>
               <div class="err-msg small text-danger mt-1 ml-1 d-none"></div>
             </div>
-            <div id="your-gender" class="px-1 mb-4">
+            <div id="your-gender" class="px-1 mb-3">
               <label class="form-label d-flex align-items-center">
                 <span class="middle font-weight-bold text-form-name">性別</span>
               </label>
@@ -207,71 +207,71 @@
                 <div class="custom-control custom-radio mr-2">
                   <input class="custom-control-input" type="radio" id="msex" name="your-gender" value="男">
                   <label class="custom-control-label" for="msex">
-                    <span class="middle text-form-name">男</span>
+                    <span class="text-form-name">男</span>
                   </label>
                 </div>
                 <div class="custom-control custom-radio">
                   <input class="custom-control-input" type="radio" id="fsex" name="your-gender" value="女">
                   <label class="custom-control-label" for="fsex">
-                    <span class="middle text-form-name">女</span>
+                    <span class="text-form-name">女</span>
                   </label>
                 </div>
               </div>
               <div class="err-msg small text-danger mt-1 ml-1 d-none"></div>
             </div>
-            <div id="your-address" class="px-1 mb-4">
+            <div id="your-address" class="px-1 mb-3">
               <label class="form-label d-flex align-items-center" for="your-address">
                 <span class="middle font-weight-bold text-form-name">住所</span>
               </label>
               <div class="d-flex w-100 mb-2">
-                <input id="zipcode-input" class="w-75 form-control zipcode" type="text" name="zipcode" value="" placeholder="例)8120012">
-                <button id="search" class="w-25 btn btn-outline-primary btn-sm ml-2" type="button">住所検索</button>
+                <div class="w-100">
+                  <input id="zipcode-input" class="form-control zipcode" type="text" name="zipcode" value=""
+                    placeholder="例）8120012">
+                </div>
+                <div class="w-100 ml-2">
+                  <input id="address1" class="form-control" type="text" name="address1" value="" placeholder="都道府県"
+                    readonly>
+                </div>
               </div>
-              <div id="zip-error" class="small text-danger mt-1 ml-1 mb-2"></div>
+              <div id="zip-error" class="small text-danger mt-1 ml-1 mb-2 d-none"></div>
               <div class="w-100 mb-2">
-                <input id="address1" class="form-control" type="text" name="address1" value="" placeholder="都道府県" readonly>
-              </div>
-              <div class="w-100 mb-2">
-                <input id="address2" class="form-control" type="text" name="address2" value="" placeholder="市区町村" readonly>
+                <input id="address2" class="form-control" type="text" name="address2" value="" placeholder="市区町村"
+                  readonly>
               </div>
               <div class="w-100">
-                <input id="address3" class="form-control" type="text" name="address3" value="" placeholder="番地以降 ビル･マンション名">
+                <input id="address3" class="form-control" type="text" name="address3" value=""
+                  placeholder="番地以降 ビル･マンション名">
               </div>
-              <div class="err-msg small text-danger mt-1 ml-1 mb-2"></div>
+              <div class="err-msg small text-danger mt-1 ml-1 d-none"></div>
             </div>
-            <!-- <div class="px-1 mb-4">
+            <div id="your-tel" class="px-1 mb-3">
               <label class="form-label d-flex align-items-center" for="your-tel">
                 <span class="middle font-weight-bold text-form-name">電話番号</span>
               </label>
-              <input class="form-control" type="tel" id="your-tel" name="your-tel">
-              <div class=""><small class="err-msg text-danger mt-1 ml-1 d-none"></small></div>
-            </div> -->
-            <!-- <div class="px-1 mb-4">
+              <input id="your-tel-num" class="form-control" type="tel" name="your-tel" value=""
+                placeholder="例）0901234567">
+              <div class="err-msg small text-danger mt-1 ml-1 d-none"></div>
+            </div>
+            <div id="your-email" class="px-1 mb-3">
               <label class="form-label d-flex align-items-center" for="your-email">
                 <span class="middle font-weight-bold text-form-name">メールアドレス</span>
               </label>
-              <input class="form-control" type="text" id="your-email" name="your-email">
-              <div class=""><small class="err-msg text-danger mt-1 ml-1 d-none"></small></div>
-            </div> -->
-            <!-- <div class="px-1 mb-4">
-              <div class="d-flex">
-                <div class="mr-2">
-                  <label class="form-label d-flex align-items-center" for="your-pass">
-                    <span class="middle font-weight-bold text-form-name">パスワード</span>
-                  </label>
-                  <input class="form-control" type="text" id="your-pass" name="your-pass">
-                </div>
-                <div class="">
-                  <label class="form-label d-flex align-items-center" for="your-pass">
-                    <span class="middle font-weight-bold text-form-name">確認</span>
-                  </label>
-                  <input class="form-control" type="text" id="your-pass" name="your-pass">
-                </div>
+              <input id="your-email-input" class="form-control" type="text" name="your-email" value=""
+                placeholder="*****@*****">
+              <div class="err-msg small text-danger mt-1 ml-1 d-none"></div>
+            </div>
+            <div id="your-pass" class="px-1 mb-3">
+              <div class="">
+                <label class="form-label d-flex align-items-center" for="your-pass">
+                  <span class="middle font-weight-bold text-form-name">パスワード</span>
+                </label>
+                <input class="form-control" type="text" id="your-pass-input1" name="your-pass" value=""
+                  placeholder="********">
+                <small class="guide-msg form-text text-muted">半角英字、数字を組み合わせて 8 文字以上で入力してください</small>
+                <div class="err-msg small text-danger mt-1 ml-1 d-none"></div>
               </div>
-              <div class=""><small class="err-msg text-danger mt-1 ml-1 d-none"></small></div>
-              <small class="guide-msg form-text text-muted">半角英字、数字、記号を組み合わせて 8 文字以上で入力してください</small>
-            </div> -->
-            <div class="px-1 mb-4">
+            </div>
+            <div class="px-1 mb-3">
               <button name="your-submit" class="btn btn-primary w-100" type="submit">確認画面へ</button>
             </div>
           </form>
