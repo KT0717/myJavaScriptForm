@@ -225,8 +225,7 @@
               </label>
               <div class="d-flex w-100 mb-2">
                 <div class="w-100">
-                  <input id="zipcode-input" class="form-control zipcode" type="text" name="zipcode" value=""
-                    placeholder="例）8120012">
+                  <input id="zipcode-input" class="form-control zipcode" type="text" name="zipcode" value="" placeholder="例）8120012">
                 </div>
                 <div class="w-100 ml-2">
                   <input id="address1" class="form-control" type="text" name="address1" value="" placeholder="都道府県"
@@ -239,8 +238,7 @@
                   readonly>
               </div>
               <div class="w-100">
-                <input id="address3" class="form-control" type="text" name="address3" value=""
-                  placeholder="番地以降 ビル･マンション名">
+                <input id="address3" class="form-control" type="text" name="address3" value="" placeholder="番地以降 ビル･マンション名" disabled>
               </div>
               <div class="err-msg small text-danger mt-1 ml-1 d-none"></div>
             </div>
@@ -265,21 +263,29 @@
                 <label class="form-label d-flex align-items-center" for="your-pass">
                   <span class="middle font-weight-bold text-form-name">パスワード</span>
                 </label>
-                <input class="form-control" type="text" id="your-pass-input1" name="your-pass" value=""
+                <input class="form-control" type="password" id="your-pass-input1" name="your-pass" value=""
                   placeholder="********">
                 <small class="guide-msg form-text text-muted">半角英字、数字を組み合わせて 8 文字以上で入力してください</small>
                 <div class="err-msg small text-danger mt-1 ml-1 d-none"></div>
               </div>
             </div>
+            <hr>
+            <div id="your-privacy">
+              <div class="mb-2">
+                <p class="small"><a href="#">利用規約</a> ・ <a href="#">プライバシーポリシー</a> に同意の上でお進みください。</p>
+              </div>
+              <div class="custom-control custom-checkbox text-center mb-3">
+                <input id="your-privacy-input" type="checkbox" class="custom-control-input">
+                <label class="custom-control-label mb-0" for="your-privacy-input">
+                  <span class="small text-form-name">上記に同意します</span>
+                </label>
+              </div>
+              <div class="err-msg small text-danger text-center mt-1 mb-3 d-none"></div>
+            </div>
             <div class="px-1 mb-3">
               <button name="your-submit" class="btn btn-primary w-100" type="submit">確認画面へ</button>
             </div>
           </form>
-          <hr>
-          <div class="">
-            <p class="small"><a href="#">利用規約</a> ・ <a href="#">プライバシーポリシー</a> に同意の上でお進みください。</p>
-          </div>
-          <hr>
           <div class="text-center">
             <p class="small"><a class="" href="#">アカウントをお持ちの場合はログイン</a></p>
           </div>

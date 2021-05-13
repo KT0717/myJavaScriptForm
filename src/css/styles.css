@@ -118,6 +118,14 @@ label {
   max-width: 425px;
 }
 
+.custom-control-label::before {
+  top: 0.3175rem !important;
+}
+
+.custom-control-label::after {
+  top: 0.3175rem !important;
+}
+
 @media(max-width:767px) {
   .border-cutstom-hidden {
     border: none !important;
