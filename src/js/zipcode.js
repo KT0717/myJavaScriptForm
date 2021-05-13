@@ -10,6 +10,7 @@ zipcodeInput.addEventListener('input', ()=>{
   let address2 = document.getElementById('address2');
   let address3 = document.getElementById('address3');
   let param = zipcodeInput.value.replace('-', '');
+  
   if (zipcodeInput.value.length < 7) {
     zipError.innerHTML = '';
     address1.value = '';
@@ -32,6 +33,7 @@ zipcodeInput.addEventListener('input', ()=>{
   zipcodeInput.value = zipcodeInput.value.replace(/[Ａ-Ｚａ-ｚ０-９！-～]/g, function(s){
     return String.fromCharCode(s.charCodeAt(0)-0xFEE0);
   });
+
   if (zipcodeInput.value.length === 7) {
     let url = api + param;
     fetchJsonp(url, {

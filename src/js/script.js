@@ -201,7 +201,6 @@ function validationAddress() {
   }
   // ７桁入力されて番地以降が未入力だったら
   if (zipcodeInput.classList.contains('true') && address3.value === '') {
-    console.log(address1.value.length);
     yourAddressErrMsg.classList.remove('d-none');
     yourAddressErrMsg.innerHTML = '<span class="text-danger"><i class="fas fa-exclamation-circle mr-1"></i>番地以降 ビル･マンション名を入力してください</span>';
     return true;
@@ -321,13 +320,14 @@ function validationPrivacy() {
     yourPrivacyErrMsg.classList.add('d-none');
     yourPrivacyErrMsg.previousElementSibling.classList.add('mb-3');
   }
+  
+  yourPrivacyInput.addEventListener('input', inputChange);
+
   if (yourPrivacyInput.checked === false) {
+    console.log(yourPrivacyInput.checked);
     yourPrivacyErrMsg.classList.remove('d-none');
     yourPrivacyErrMsg.innerHTML = '<span class="text-danger"><i class="fas fa-exclamation-circle mr-1"></i>ボックスのチェックをお願いします</span>';
     yourPrivacyErrMsg.previousElementSibling.classList.remove('mb-3');
-    if (yourPrivacyInput.checked === true) {
-      yourPrivacyInput.addEventListener('change', inputChange);
-    }
     return true;
   }
 }
