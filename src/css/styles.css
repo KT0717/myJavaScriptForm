@@ -67,12 +67,53 @@ a:hover {
 .custom-select {
   font-size: 90% !important;
   height: 36px !important;
-  color: #202124 !important;
+  /* color: #666666 !important; */
 }
 
 .text-form-name {
-    color: #3e3e3e !important;
+  color: #040404 !important;
 }
+
+input::-webkit-input-placeholder {
+  color: #666666 !important;
+}
+
+input:-moz-placeholder {
+  color: #666666 !important;
+}
+
+input::-moz-placeholder {
+  color: #666666 !important;
+}
+
+input.loading:-ms-input-placeholder {
+  color: #dfdfdf !important;
+}
+
+
+
+input.loading::-webkit-input-placeholder {
+  color: #dfdfdf !important;
+}
+
+input.loading:-moz-placeholder {
+  color: #dfdfdf !important;
+}
+
+input.loading::-moz-placeholder {
+  color: #dfdfdf !important;
+}
+
+input.loading:-ms-input-placeholder {
+  color: #dfdfdf !important;
+}
+
+.loading.form-control:disabled,
+.loading.form-control[readonly] {
+  background-color: #e9ecef;
+  opacity: .5;
+}
+
 /* my Bootstrap reset end */
 
 textarea:-webkit-autofill,
@@ -130,4 +171,10 @@ label {
   .border-cutstom-hidden {
     border: none !important;
   }
+}
+
+.glossyBtn {
+  background-image: url(../img/loading01_r1_c10.gif);
+  background-repeat: no-repeat;
+  background-position: center;
 }

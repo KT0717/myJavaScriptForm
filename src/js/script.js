@@ -61,7 +61,9 @@ form.addEventListener('submit', e => {
 function errMsgControl(category, errMsg, add) {
   category.addEventListener('input', function inputChange() {
     errMsg.classList.add('d-none');
-    add.previousElementSibling.classList.add('mb-2');
+    if (add !== false) {
+      add.previousElementSibling.classList.add('mb-2');
+    }
   });
 }
 
@@ -184,8 +186,6 @@ function validationAddress() {
   var yourAddressErrMsg = yourAddress.getElementsByClassName('err-msg')[0];
   var zipcodeInput = document.getElementById('zipcode-input');
   let zipError = document.getElementById('zip-error');
-  let address1 = document.getElementById('address1');
-  let address2 = document.getElementById('address2');
   let address3 = document.getElementById('address3');
 
   // 入力を検知してエラーメッセージを非表示
@@ -229,7 +229,7 @@ function validTel() {
   var yourTelNum = document.getElementById('your-tel-num');
   var yourTelErrMsg = yourTel.getElementsByClassName('err-msg')[0];
   // 入力を検知してエラーメッセージを非表示
-  errMsgControl(yourTelNum, yourTelErrMsg);
+  errMsgControl(yourTelNum, yourTelErrMsg, false);
   // 電話番号が未入力だったら
   if (yourTelNum.value === '')
   {
@@ -320,7 +320,7 @@ function validationPrivacy() {
     yourPrivacyErrMsg.classList.add('d-none');
     yourPrivacyErrMsg.previousElementSibling.classList.add('mb-3');
   }
-  
+
   yourPrivacyInput.addEventListener('input', inputChange);
 
   if (yourPrivacyInput.checked === false) {

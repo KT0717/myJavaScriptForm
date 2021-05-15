@@ -3,14 +3,23 @@ var zipcodeInput = document.getElementById('zipcode-input');
 var yourAddress = document.getElementById('your-address');
 var yourAddressErrMsg = yourAddress.getElementsByClassName('err-msg')[0];
 
-zipcodeInput.addEventListener('input', ()=>{
+zipcodeInput.addEventListener('input', () => {
   let api = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=';
   let zipError = document.getElementById('zip-error');
   let address1 = document.getElementById('address1');
   let address2 = document.getElementById('address2');
   let address3 = document.getElementById('address3');
   let param = zipcodeInput.value.replace('-', '');
-  
+
+  function test() {
+    address1.classList.add('glossyBtn', 'loading');
+    address2.classList.add('glossyBtn', 'loading');
+  }
+  function test2() {
+    address1.classList.remove('glossyBtn', 'loading');
+    address2.classList.remove('glossyBtn', 'loading');
+  }
+
   if (zipcodeInput.value.length < 7) {
     zipError.innerHTML = '';
     address1.value = '';
@@ -20,7 +29,8 @@ zipcodeInput.addEventListener('input', ()=>{
     yourAddressErrMsg.classList.add('d-none');
   }
   if (zipcodeInput.value.length > 7) {
-    zipError.innerHTML = '<span class="text-danger"><i class="fas fa-exclamation-circle mr-1"></i>７桁を超えないよう';
+    console.log('fyyt');
+    zipError.innerHTML = '<span class="text-danger"><i class="fas fa-exclamation-circle mr-1"></i>７桁を超えないように入力してください';
     zipError.classList.remove('d-none');
     zipError.previousElementSibling.classList.remove('mb-2');
   }
@@ -35,6 +45,7 @@ zipcodeInput.addEventListener('input', ()=>{
   });
 
   if (zipcodeInput.value.length === 7) {
+    test();
     let url = api + param;
     fetchJsonp(url, {
       timeout: 10000, //タイムアウト時間
@@ -63,6 +74,7 @@ zipcodeInput.addEventListener('input', ()=>{
           address3.disabled = false;
           address3.focus();
           zipcodeInput.classList.add('true');
+          test2();
         }
       })
       .catch((ex)=>{ //例外処理
